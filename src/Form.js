@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function Form(props) {
     return (
         <form onSubmit={props.onFormSubmit}>

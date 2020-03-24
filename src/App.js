@@ -3,20 +3,21 @@ import Form from './Form'
 import './App.css';
 
 
+
 function App() {
-const [team, setTeam] = useState('')
+const [team, setTeam] = useState([])
 const [formValues, setFormValues] = useState({
   name:'',
   email:'',
-  role:''
+  role:'',
 })
 
 const onInputChange = event => {
-  const changedInput = event.target.name
-  const newValueInput = event.target.value
+  const inputThatChanged = event.target.name
+  const newValueForInput = event.target.value
   setFormValues({
     ...formValues,
-    [changedInput]: newValueInput
+    [inputThatChanged]: newValueForInput
   })
 }
 
@@ -31,13 +32,17 @@ const onFormSubmit = event => {
 }
 
   return (
-    <>
+    <div className="App">
+      <h1>TeamMates</h1>
+      {
+        team.map(tm => <div key={tm.id}>{tm.name} {tm.email} {tm.role}</div>)
+      }
       <Form 
-      onInputChange={onInputChange}
-      formValues={formValues}
-      onFormSubmit={onFormSubmit}
+        onInputChange={onInputChange}
+        formValues={formValues}
+        onFormSubmit={onFormSubmit}
       />
-    </>
+    </div>
   );
 }
 
